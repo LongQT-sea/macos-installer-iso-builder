@@ -540,9 +540,9 @@ create_image_10_7_10_8() {
     
     if [ "$IMAGE_FORMAT" == "dmg" ]; then
         sudo hdiutil create -quiet -layout GPTSPUD -format UDRW -ov \
-            -volname "$volume_name" -srcdir "$WORK_DIR/InstallESD_mnt" "$FINAL_OUTPUT_PATH"
-        mv -f "$FINAL_OUTPUT_PATH" "${FINAL_OUTPUT_PATH%.dmg.img}.dmg.img"
-        FINAL_OUTPUT_PATH="${FINAL_OUTPUT_PATH%.dmg.img}.dmg.img"
+            -volname "$volume_name" -srcdir "$WORK_DIR/InstallESD_mnt" "${FINAL_OUTPUT_PATH%.img}"
+
+        mv -f "${FINAL_OUTPUT_PATH%.img}" "$FINAL_OUTPUT_PATH"
         sync && detach_disk "$WORK_DIR/InstallESD_mnt"
     else
         sync && detach_disk "$WORK_DIR/InstallESD_mnt"
